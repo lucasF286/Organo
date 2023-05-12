@@ -4,7 +4,7 @@ import CampoTexto from "../CampoTexto"
 import ListaSuspensa from "../ListaSuspensa"
 import "./Formulario.css"
 
-const Formulario = () => {
+const Formulario = (props) => {
 
     const times = [
         "Loud",
@@ -15,11 +15,16 @@ const Formulario = () => {
     const [nome, setNome] = useState('')
     const [funcao, setFuncao] = useState('')
     const [imagem, setImagem] = useState('')
-    const [time, setTime] = useState('')
+    const [lista, setLista] = useState('')
 
     const aoSalvar = (e) => {
         e.preventDefault();
-        console.log("Formulario submetido com sucesso!", nome, funcao, imagem, time);
+        props.aoColaboradorCadastrado([
+            nome,
+            funcao,
+            imagem,
+            lista
+        ])
     }
 
     return (
@@ -31,30 +36,30 @@ const Formulario = () => {
                 obrigatorio={true}  
                 label="Nome" 
                 placeholder="Digite seu nome"
-                valor={nome}
                 aoAlterado={valor => setNome(valor)}
+                value={nome}
                 />
 
                 <CampoTexto obrigatorio={true} 
                 label="Função" 
                 placeholder="Digite sua função"
-                valor={funcao}
-                aoAlterado={valor => setFuncao(valor)} 
+                aoAlterado={valor => setFuncao(valor)}
+                value={funcao}
                 />
 
                 <CampoTexto 
                 label="Imagem" 
                 placeholder="Informe o endereço da imagem" 
-                valor={imagem}
                 aoAlterado={valor => setImagem(valor)}
+                value={imagem}
                 />
 
                 <ListaSuspensa 
                 obrigatorio={true} 
                 label="Times" 
                 itens={times}
-                valor={time}
-                aoAlterado={valor => setTime(valor)}
+                aoAlterado={valor => setLista(valor)}
+                value={lista}
                 />
 
                 <Botao>
