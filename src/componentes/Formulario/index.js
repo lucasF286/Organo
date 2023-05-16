@@ -6,12 +6,6 @@ import "./Formulario.css"
 
 const Formulario = (props) => {
 
-    const times = [
-        "Loud",
-        "Furia",
-        "vFury"
-    ];
-
     const [nome, setNome] = useState('')
     const [funcao, setFuncao] = useState('')
     const [imagem, setImagem] = useState('')
@@ -19,12 +13,16 @@ const Formulario = (props) => {
 
     const aoSalvar = (e) => {
         e.preventDefault();
-        props.aoColaboradorCadastrado([
+        props.aoColaboradorCadastrado({
             nome,
             funcao,
             imagem,
             lista
-        ])
+    })
+    setNome('')
+    setFuncao('')
+    setImagem('')
+    setLista('')
     }
 
     return (
@@ -57,7 +55,7 @@ const Formulario = (props) => {
                 <ListaSuspensa 
                 obrigatorio={true} 
                 label="Times" 
-                itens={times}
+                itens={props.times}
                 aoAlterado={valor => setLista(valor)}
                 value={lista}
                 />

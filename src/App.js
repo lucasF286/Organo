@@ -26,16 +26,23 @@ function App() {
   const [colaboradores, setColaborador] = useState([])
 
   const aoColaboradorAlterado = (colaborador) => {
-    console.log(colaboradores);
     setColaborador([...colaboradores, colaborador]);
   }
+
   return (
     <div className="App">
       <Banner />
-      <Formulario aoColaboradorCadastrado={colaborador => aoColaboradorAlterado(colaborador)} />
-      {times.map(time => <Time key={time.nome} nome={time.nome} corPrimaria={time.corPrimaria} corSecundaria={time.corSecundaria}/>)}
+      <Formulario times={times.map(time => time.nome)} aoColaboradorCadastrado={colaborador => aoColaboradorAlterado(colaborador)}/>
 
+      {times.map(time => <Time 
+        nome={time.nome} 
+        key={time.nome} 
+        corPrimaria={time.corPrimaria} 
+        corSecundaria={time.corSecundaria}
+        colaboradores={colaboradores.filter(colaborador => colaborador.lista === time.nome)}
+        />)}
     </div>
+
   );
 }
 
