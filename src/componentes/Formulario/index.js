@@ -7,7 +7,7 @@ import "./Formulario.css"
 const Formulario = (props) => {
 
     const [nome, setNome] = useState('')
-    const [funcao, setFuncao] = useState('')
+    const [cargo, setCargo] = useState('')
     const [imagem, setImagem] = useState('')
     const [lista, setLista] = useState('')
 
@@ -15,12 +15,12 @@ const Formulario = (props) => {
         e.preventDefault();
         props.aoColaboradorCadastrado({
             nome,
-            funcao,
+            cargo,
             imagem,
             lista
     })
     setNome('')
-    setFuncao('')
+    setCargo('')
     setImagem('')
     setLista('')
     }
@@ -28,26 +28,26 @@ const Formulario = (props) => {
     return (
         <section className="formulario">
             <form onSubmit={aoSalvar}>
-                <h2>Preencha os dados para criar o card do jogador</h2>
+                <h2>Preencha os dados para criar o card do colaborador</h2>
 
                 <CampoTexto 
                 obrigatorio={true}  
                 label="Nome" 
-                placeholder="Digite seu nome"
+                placeholder="Digite seu nome..."
                 aoAlterado={valor => setNome(valor)}
                 value={nome}
                 />
 
                 <CampoTexto obrigatorio={true} 
-                label="Função" 
-                placeholder="Digite sua função"
-                aoAlterado={valor => setFuncao(valor)}
-                value={funcao}
+                label="Cargo" 
+                placeholder="Digite seu cargo..."
+                aoAlterado={valor => setCargo(valor)}
+                value={cargo}
                 />
 
                 <CampoTexto 
                 label="Imagem" 
-                placeholder="Informe o endereço da imagem" 
+                placeholder="Informe o endereço da imagem..." 
                 aoAlterado={valor => setImagem(valor)}
                 value={imagem}
                 />
