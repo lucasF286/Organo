@@ -6,7 +6,7 @@ const Time = (props) => {
 
     return (
         props.colaboradores.length > 0 && <section className="time" style={{ backgroundColor: hexToRgba(props.cor, '0.6') }}>
-            <input type='color' value={props.cor} onChange={e => props.mudarCor(e.target.value, props.nome)} className='inputCor'/>
+            <input type='color' value={props.cor} onChange={e => props.mudarCor(e.target.value, props.id)} className='inputCor'/>
             <h3 style={{ borderColor: props.cor }}>{props.nome}</h3>
             <div className="colaboradores">
                 {props.colaboradores.map((colaborador, indice) => {
