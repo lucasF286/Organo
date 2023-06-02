@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react'
 import Botao from "../Botao";
 import CampoTexto from "../CampoTexto"
@@ -10,10 +11,13 @@ const Formulario = (props) => {
     const [cargo, setCargo] = useState('')
     const [imagem, setImagem] = useState('')
     const [lista, setLista] = useState('')
+    const [id, setId] = useState(uuidv4())
 
     const aoSalvar = (e) => {
         e.preventDefault();
+        setId(uuidv4());
         props.aoColaboradorCadastrado({
+            id,
             nome,
             cargo,
             imagem,

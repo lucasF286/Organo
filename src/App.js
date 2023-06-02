@@ -44,15 +44,60 @@ function App() {
     }
   ])
 
-  const [colaboradores, setColaborador] = useState([])
+  const inicial = [
+    {
+      id: uuidv4(),
+      nome: 'Lucas',
+      cargo: 'Desenvolvedor web',
+      imagem: 'https://github.com/lucasF286.png',
+      lista: times[1].nome 
+    },
+    {
+      id: uuidv4(),
+      nome: 'Lucas',
+      cargo: 'Desenvolvedor web',
+      imagem: 'https://github.com/lucasF286.png',
+      lista: times[1].nome 
+    },
+    {
+      id: uuidv4(),
+      nome: 'Lucas',
+      cargo: 'Desenvolvedor web',
+      imagem: 'https://github.com/lucasF286.png',
+      lista: times[1].nome 
+    },
+    {
+      id: uuidv4(),
+      nome: 'Lucas',
+      cargo: 'Desenvolvedor web',
+      imagem: 'https://github.com/lucasF286.png',
+      lista: times[0].nome 
+    },
+    {
+      id: uuidv4(),
+      nome: 'Lucas',
+      cargo: 'Desenvolvedor web',
+      imagem: 'https://github.com/lucasF286.png',
+      lista: times[0].nome 
+    },
+    {
+      id: uuidv4(),
+      nome: 'Lucas',
+      cargo: 'Desenvolvedor web',
+      imagem: 'https://github.com/lucasF286.png',
+      lista: times[0].nome 
+    }
+  ]
+
+  const [colaboradores, setColaborador] = useState(inicial)
 
   const aoColaboradorAlterado = (colaborador) => {
     setColaborador([...colaboradores, colaborador]);
   }
 
-  function deletarColaborador () {
-    console.log('deletando colabotador');
-  }
+  function deletarColaborador (id) {
+    setColaborador(colaboradores.filter(colaborador => colaborador.id !== id));
+    }
 
   function mudaCorDoTime (cor, id) {
     setTimes(times.map(time => {
@@ -69,12 +114,11 @@ function App() {
       <Formulario times={times.map(time => time.nome)} aoColaboradorCadastrado={colaborador => aoColaboradorAlterado(colaborador)}/>
 
       {times.map(time => <Time
+        time={time}
         mudarCor={mudaCorDoTime}
-        id={time.id} 
         nome={time.nome} 
         key={time.nome} 
         cor={time.cor} 
-        corSecundaria={time.corSecundaria}
         colaboradores={colaboradores.filter(colaborador => colaborador.lista === time.nome)}
         aoDeletar={ deletarColaborador }
         />)}
