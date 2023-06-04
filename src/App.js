@@ -47,45 +47,51 @@ function App() {
   const inicial = [
     {
       id: uuidv4(),
+      favorito: false,
       nome: 'Lucas',
       cargo: 'Desenvolvedor web',
       imagem: 'https://github.com/lucasF286.png',
-      lista: times[1].nome 
+      lista: times[1].nome
     },
     {
       id: uuidv4(),
+      favorito: false,
       nome: 'Lucas',
       cargo: 'Desenvolvedor web',
       imagem: 'https://github.com/lucasF286.png',
-      lista: times[1].nome 
+      lista: times[1].nome
     },
     {
       id: uuidv4(),
+      favorito: false,
       nome: 'Lucas',
-      cargo: 'Desenvolvedor web',
+      cargo: 'Desenvolvedor web sdaokoasd sdasodkodkas oasdkokasdokasd',
       imagem: 'https://github.com/lucasF286.png',
-      lista: times[1].nome 
+      lista: times[1].nome
     },
     {
       id: uuidv4(),
+      favorito: false,
       nome: 'Lucas',
       cargo: 'Desenvolvedor web',
       imagem: 'https://github.com/lucasF286.png',
-      lista: times[0].nome 
+      lista: times[0].nome
     },
     {
       id: uuidv4(),
+      favorito: false,
       nome: 'Lucas',
       cargo: 'Desenvolvedor web',
       imagem: 'https://github.com/lucasF286.png',
-      lista: times[0].nome 
+      lista: times[0].nome
     },
     {
       id: uuidv4(),
+      favorito: false,
       nome: 'Lucas',
       cargo: 'Desenvolvedor web',
       imagem: 'https://github.com/lucasF286.png',
-      lista: times[0].nome 
+      lista: times[0].nome
     }
   ]
 
@@ -95,41 +101,49 @@ function App() {
     setColaborador([...colaboradores, colaborador]);
   }
 
-  function deletarColaborador (id) {
+  function deletarColaborador(id) {
     setColaborador(colaboradores.filter(colaborador => colaborador.id !== id));
-    }
+  }
 
-  function mudaCorDoTime (cor, id) {
+  function mudaCorDoTime(cor, id) {
     setTimes(times.map(time => {
-      if(time.id === id){
+      if (time.id === id) {
         time.cor = cor;
       }
       return time;
     }));
   }
 
-  function cadastrarTime (novoTime) {
-    setTimes([...times, {...novoTime, id: uuidv4() }])
+  function cadastrarTime(novoTime) {
+    setTimes([...times, { ...novoTime, id: uuidv4() }])
+  }
+
+  function resolverFavorito(id) {
+    setColaborador(colaboradores.map(colaborador => {
+      if(colaborador.id === id) colaborador.favorito = !colaborador.favorito;
+      return colaborador;
+    }))
   }
 
   return (
     <div className="App">
       <Banner />
-      <Formulario 
+      <Formulario
         cadastrarTime={cadastrarTime}
-        times={times.map(time => time.nome)} 
+        times={times.map(time => time.nome)}
         aoColaboradorCadastrado={colaborador => aoColaboradorAlterado(colaborador)}
       />
 
       {times.map(time => <Time
         time={time}
         mudarCor={mudaCorDoTime}
-        nome={time.nome} 
-        key={time.nome} 
-        cor={time.cor} 
+        nome={time.nome}
+        key={time.nome}
+        cor={time.cor}
         colaboradores={colaboradores.filter(colaborador => colaborador.lista === time.nome)}
-        aoDeletar={ deletarColaborador }
-        />)}
+        aoDeletar={deletarColaborador}
+        aoFavoritar={resolverFavorito}
+      />)}
     </div>
 
   );
